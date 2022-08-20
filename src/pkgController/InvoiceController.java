@@ -101,6 +101,10 @@ public class InvoiceController implements ActionListener, MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        // Fired when select row in tblInvoices to update the invoice header data
+        if (e.getComponent().getName().equals("tblInvoices")) { 
+            updateInvoice();
+        }
     }
 
     @Override
@@ -149,6 +153,15 @@ public class InvoiceController implements ActionListener, MouseListener {
         newFrm.show();
     }
 
+    void updateInvoice()
+    {
+        if (frm.selectedInvIndex >=0)
+        {
+            headerInvoicesObj.get(frm.selectedInvIndex).setCustomerName(frm.txtCustomerName.getText());
+            headerInvoicesObj.get(frm.selectedInvIndex).setInvoiceDate(frm.clnInvoiceDate.getDate());
+        }
+    }
+    
     // OPen New Invoice Line form, then add the new item in the invoices object 
     void addInvoiceLine() {
 
